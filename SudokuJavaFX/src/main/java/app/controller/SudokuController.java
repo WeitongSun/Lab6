@@ -393,7 +393,9 @@ public class SudokuController implements Initializable {
 
 								// TODO: Set the message for mistakes
 								if (game.getShowHints()) {
-
+									if(!s.isValidValue(CellTo.getiRow(), CellTo.getiCol(), CellFrom.getiCellValue())) {
+										this.handle(event);
+									}
 								}
 							}
 
