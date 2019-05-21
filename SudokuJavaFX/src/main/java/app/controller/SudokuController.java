@@ -250,8 +250,10 @@ public class SudokuController implements Initializable {
 				}
 			}
 		});
-
+		
 		gridPaneNumbers.add(spTrashCan, s.getiSize() + 1, 0);
+		
+		
 
 		return gridPaneNumbers;
 	}
@@ -385,11 +387,15 @@ public class SudokuController implements Initializable {
 						if (db.hasContent(myFormat)) {
 							Cell CellFrom = (Cell) db.getContent(myFormat);
 
-							if (!s.isValidValue(CellTo.getiRow(), CellTo.getiCol(), CellFrom.getiCellValue())) {
+							if (!s.isValidValue(CellTo.getiRow(), CellTo.getiCol(), CellFrom.getiCellValue()) && game.getShowHints()) {
+							
+							
 
 								// Add a mistake
 								game.getSudoku().AddMistake();
 								BuildTopGrid();
+								
+								
 
 								// TODO: Set the message for mistakes
 								if (game.getShowHints()) {
@@ -406,9 +412,7 @@ public class SudokuController implements Initializable {
 							paneTarget.getChildren().clear();
 							paneTarget.getChildren().add(iv);
 							System.out.println(CellFrom.getiCellValue());
-							
-							
-							
+						
 							game.getSudoku().getPuzzle()[CellFrom.getiRow()][CellFrom.getiCol()] = CellFrom.getiCellValue();
 							
 							
